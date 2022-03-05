@@ -1,0 +1,15 @@
+.headerContainer {
+  height    : 15rem;
+  background: var(--blue-900);
+
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+  padding: 5rem;
+
+  .headerContent {
+    display        : flex;
+    justify-content: center;
+  }
+}
