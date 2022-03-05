@@ -1,14 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { api } from '../services/api';
 import styles from './home.module.scss';
+
+interface Hero {
+  id: number;
+  name: string;
+  modified: string,
+  thumbnail: {
+    path: string,
+    extension: string;
+  };
+}
 
 export default function Home() {
 
+  const [heroes, setHeroes] = useState<Hero[]>([]);
+
   useEffect(() => {
-    buscarHerois();
+
+    getHeroes();
+    console.log('heroes: ', heroes);
+
   }, []);
 
-  async function buscarHerois() {
-    const response = await fetch('http://gateway.marvel.com/v1/public/characters?ts=1646471929347&apikey=e805fe9719d145ceca74a945af62118b&hash=0757bd2e4747b3e6302fe20a0c5f4bce')
+  async function getHeroes() {
+
+    try {
+      const response = await fetch('http://gateway.marvel.com/v1/public/characters?ts=1646471929347&apikey=e805fe9719d145ceca74a945af62118b&hash=0757bd2e4747b3e6302fe20a0c5f4bce')
         .then((res) => res.json())
         .then((dataResult) => dataResult.data.results);
 
