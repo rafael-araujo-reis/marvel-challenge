@@ -24,6 +24,20 @@ export default function Home() {
   return (
     <main className={styles.homeContainer}>
       <h1>Hello word</h1>
+      <ul>
+
+        {
+          heroes?.map((hero) => {
+            return (
+              <li key={hero.id}>
+                <img src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} alt="" />
+                <p>{hero.name}</p>
+              </li>
+            );
+          })
+        }
+      </ul>
+
     </main>
   );
 }
