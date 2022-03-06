@@ -1,12 +1,12 @@
 .headerContainer {
-  height    : 15rem;
+  height    : 24rem;
   background: var(--blue-900);
 
   display        : flex;
   justify-content: center;
   align-items    : center;
 
-  padding: 5rem;
+  padding: 5rem 2rem;
 
   .headerContent {
     display        : flex;

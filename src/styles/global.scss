@@ -1,7 +1,11 @@
 :root {
-  --red-900: #700611;
+  --red-900  : #700611;
+  --blue-900 : #111825;
+  --gray-100 : #CCCCCC;
+  --white-100: #FFFFFF;
+  --black-900: #000000;
 
-  --blue-900: #111825;
+  --shadow: rgba(0, 0, 0, 0.7);
 }
 
 * {
@@ -10,21 +14,20 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 @media (max-width: 1080px) {
   html {
-    font-size: 93.75%;
+    font-size: 56.25%;
   }
 }
 
 @media (max-width: 720px) {
   html {
-    font-size: 87.5%;
+    font-size: 50%;
   }
-}
-
-body {
-  // background-color: var(--background);
-  // color: var()
 }
 
 body,
@@ -32,7 +35,7 @@ input,
 textarea,
 select,
 button {
-  font: 400 1rem 'Poppins', sans-serif;
+  font: 400 1.6rem 'Poppins', sans-serif;
 }
 
 button {
