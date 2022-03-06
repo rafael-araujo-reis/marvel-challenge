@@ -40,7 +40,11 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.homeContainer}>
+    <>
+      <Head>
+        <title>Marvel Challenge | Magalu</title>
+      </Head>
+      <main className={styles.homeContainer}>
       <h1>Hello word</h1>
       <ul>
 
@@ -48,14 +52,23 @@ export default function Home() {
           heroes?.map((hero) => {
             return (
               <li key={hero.id}>
-                <img src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`} alt="" />
-                <p>{hero.name}</p>
+                  <Link href={`/heroDetails/${hero.id}`}>
+                    <a>
+                      <div className={styles.cardContent}>
+                        <div className={styles.backdrop}
+                          style={{ backgroundImage: `url(${hero.thumbnail.path}.${hero.thumbnail.extension})` }}
+                        >
+                        </div>
+                        <div className={styles.titleCard}>
+                          <p>{hero.name}</p>
               </li>
             );
           })
         }
       </ul>
 
-    </main>
+      </main>
+    </>
+
   );
 }
