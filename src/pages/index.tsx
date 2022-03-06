@@ -1,4 +1,7 @@
+import Head from 'next/head';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Card } from '../components/Card';
 import { api } from '../services/api';
 import styles from './home.module.scss';
 
@@ -26,7 +29,11 @@ export default function Home() {
   async function getHeroes() {
 
     try {
-      const response = await fetch('http://gateway.marvel.com/v1/public/characters?ts=1646471929347&apikey=e805fe9719d145ceca74a945af62118b&hash=0757bd2e4747b3e6302fe20a0c5f4bce')
+      const ts = Math.floor(Date.now());
+      const apiKey = 'e805fe9719d145ceca74a945af62118b';
+      const hash = '0757bd2e4747b3e6302fe20a0c5f4bce';
+
+      const response = await fetch(`http://gateway.marvel.com/v1/public/characters?ts=1646471929347&apikey=e805fe9719d145ceca74a945af62118b&hash=0757bd2e4747b3e6302fe20a0c5f4bce`)
         .then((res) => res.json())
         .then((dataResult) => dataResult.data.results);
 
@@ -45,13 +52,11 @@ export default function Home() {
         <title>Marvel Challenge | Magalu</title>
       </Head>
       <main className={styles.homeContainer}>
-      <h1>Hello word</h1>
-      <ul>
-
-        {
-          heroes?.map((hero) => {
-            return (
-              <li key={hero.id}>
+        <ul className={styles.cardsContainer}>
+          {
+            heroes?.map((hero) => {
+              return (
+                <li key={hero.id}>
                   <Link href={`/heroDetails/${hero.id}`}>
                     <a>
                       <div className={styles.cardContent}>
@@ -61,12 +66,15 @@ export default function Home() {
                         </div>
                         <div className={styles.titleCard}>
                           <p>{hero.name}</p>
-              </li>
-            );
-          })
-        }
-      </ul>
-
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                </li>
+              );
+            })
+          }
+        </ul>
       </main>
     </>
 
