@@ -20,32 +20,31 @@ export default function Home() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
 
   useEffect(() => {
+    //salvar em localstorage
 
-    getHeroes();
-    console.log('heroes: ', heroes);
+    api.get('/characters')
+      .then((res) => {
+        setHeroes(res.data.data.results);
+      })
+      .catch(err => console.log(err.message));
 
   }, []);
 
-  async function getHeroes() {
-
+  const handleMoreHeroes = useCallback(async () => {
     try {
-      const ts = Math.floor(Date.now());
-      const apiKey = 'e805fe9719d145ceca74a945af62118b';
-      const hash = '0757bd2e4747b3e6302fe20a0c5f4bce';
+      const offset = heroes.length;
 
-      const response = await fetch(`http://gateway.marvel.com/v1/public/characters?ts=1646471929347&apikey=e805fe9719d145ceca74a945af62118b&hash=0757bd2e4747b3e6302fe20a0c5f4bce`)
-        .then((res) => res.json())
-        .then((dataResult) => dataResult.data.results);
+      const response = await api.get('/characters', {
+        params: {
+          offset
+        }
+      });
 
-      console.log('response: ', response);
-      setHeroes(response);
-
+      setHeroes([...heroes, ...response.data.data.results]);
     } catch (error) {
       console.log(`error: ${error.message}`);
     }
-
-  }
-
+  }, [heroes]);
   return (
     <>
       <Head>
