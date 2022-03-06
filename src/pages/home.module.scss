@@ -5,6 +5,9 @@
   padding   : 2rem;
   min-height: calc(100vh - 15rem);
 
+  display       : flex;
+  flex-direction: column;
+
   .cardsContainer {
     display              : grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -21,8 +24,7 @@
       position     : relative;
       cursor       : pointer;
 
-      transition-property: filter, box-shadow;
-      transition-duration: .3s;
+      transition: all 1s;
 
       .backdrop {
         background-repeat: none;

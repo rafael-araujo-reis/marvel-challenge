@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Card } from '../components/Card';
+import { useCallback, useEffect, useState } from 'react';
+import { Button } from '../components/Button';
 import { api } from '../services/api';
 import styles from './home.module.scss';
 
@@ -74,7 +74,15 @@ export default function Home() {
               );
             })
           }
+
         </ul>
+        <Button
+          titleButton={'Buscar mais heróis'}
+          colorTitle={'#FFFFFF'}
+          bgColor={'#700611'}
+
+          onClick={handleMoreHeroes}
+        />
       </main>
     </>
 
