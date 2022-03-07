@@ -1,0 +1,38 @@
+.heroContainer {
+  max-width: 1240px;
+  margin   : 0 auto;
+
+  .heroContent {
+
+    .heroDisplay {
+      background-image : url('http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg');
+      background-repeat: none;
+      background-size  : cover;
+
+      background-position: center;
+      position           : absolute;
+
+      height  : 40rem;
+      position: relative;
+
+      .title {
+        padding: 0 2rem;
+        width  : 100%;
+
+        position: absolute;
+        bottom  : 0;
+
+        background-color: var(--blue-900);
+        color           : var(--white-100);
+        font-size       : 5rem;
+
+        transform: translateY(50%)
+      }
+    }
+
+    .heroDetails {
+      // border : 1px solid #000;
+      padding: 2rem;
+    }
+  }
+}
