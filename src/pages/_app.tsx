@@ -1,13 +1,12 @@
 import { AppProps } from 'next/app';
-import { Header } from '../components/Header';
+import { HeroesProvider } from '../hooks/useHeroes';
 import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Header />
+    <HeroesProvider>
       <Component {...pageProps} />
-    </>
+    </HeroesProvider>
   );
 }
 
