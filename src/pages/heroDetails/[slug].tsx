@@ -1,4 +1,6 @@
+import { GetStaticPaths } from "next";
 import Head from "next/head";
+import api from "../../services/api";
 import styles from './styles.module.scss';
 interface Hero {
   id: number;
@@ -41,3 +43,25 @@ export default function HeroDetails(props) {
     </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  console.log('cai no getStatic do Heroes');
+  const { data } = await api.get('/characters');
+
+  const heroes = data.data.results;
+
+  const paths = heroes.map(hero => {
+    return {
+      params: {
+        slug: hero.id
+      }
+    };
+  });
+
+  console.log('paths: ', paths);
+
+  return {
+    paths,
+    fallback: 'blocking'
+  };
+};
