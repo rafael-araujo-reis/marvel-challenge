@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
 import { Button } from '../components/Button';
-import { api } from '../services/api';
+import { Card } from '../components/Card';
+import { Header } from '../components/Header';
+import { useHeroes } from '../hooks/useHeroes';
 import styles from './home.module.scss';
 
 interface Hero {
@@ -17,56 +18,26 @@ interface Hero {
 
 export default function Home() {
 
-  const [heroes, setHeroes] = useState<Hero[]>([]);
+  const { handleMoreHeroes, heroes } = useHeroes();
 
-  useEffect(() => {
-    //salvar em localstorage
-
-    api.get('/characters')
-      .then((res) => {
-        setHeroes(res.data.data.results);
-      })
-      .catch(err => console.log(err.message));
-
-  }, []);
-
-  const handleMoreHeroes = useCallback(async () => {
-    try {
-      const offset = heroes.length;
-
-      const response = await api.get('/characters', {
-        params: {
-          offset
-        }
-      });
-
-      setHeroes([...heroes, ...response.data.data.results]);
-    } catch (error) {
-      console.log(`error: ${error.message}`);
-    }
-  }, [heroes]);
   return (
     <>
+      <Header />
       <Head>
         <title>Marvel Challenge | Magalu</title>
       </Head>
       <main className={styles.homeContainer}>
         <ul className={styles.cardsContainer}>
           {
-            heroes?.map((hero) => {
+            heroes.map((hero) => {
               return (
                 <li key={hero.id}>
                   <Link href={`/heroDetails/${hero.id}`}>
                     <a>
-                      <div className={styles.cardContent}>
-                        <div className={styles.backdrop}
-                          style={{ backgroundImage: `url(${hero.thumbnail.path}.${hero.thumbnail.extension})` }}
-                        >
-                        </div>
-                        <div className={styles.titleCard}>
-                          <p>{hero.name}</p>
-                        </div>
-                      </div>
+                      <Card
+                        title={hero.name}
+                        image={`url(${hero.thumbnail.path}.${hero.thumbnail.extension})`}
+                      />
                     </a>
                   </Link>
                 </li>
@@ -84,6 +55,5 @@ export default function Home() {
         />
       </main>
     </>
-
   );
 }
