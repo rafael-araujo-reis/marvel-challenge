@@ -7,12 +7,35 @@ import { Search } from '../components/Search';
 import { useHeroes } from '../hooks/useHeroes';
 import styles from './home.module.scss';
 
+import { FaStar } from 'react-icons/fa';
+
+interface Hero {
+  id: string,
+  name: string,
+  thumbnail: {
+    path: string,
+    extension: string,
+  },
+  favorite?: boolean,
+}
+
+function heroSearch() {
+  console.log('pesquisar');
+}
+
 export default function Home() {
 
-  const { handleMoreHeroes, heroes } = useHeroes();
+  const { handleMoreHeroes, heroes, updateDataHeroes } = useHeroes();
 
-  function heroSearch() {
-    console.log('pesquisar');
+  function handleFavoriteHero(hero: Hero) {
+
+    heroes.find(element => {
+      if (element.id === hero.id) {
+        'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
+      }
+    });
+
+    localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
   }
 
   return (
@@ -36,12 +59,28 @@ export default function Home() {
           {
             heroes.map((hero) => {
               return (
-                <li key={hero.hero.id}>
-                  <Link href={`/heroDetails/${hero.hero.id}`}>
+                <li key={hero.id}>
+
+                  {
+                    hero.favorite === true ? (
+                      <FaStar
+                        className={styles.starCard}
+                        onClick={() => handleFavoriteHero(hero)}
+                        style={{ color: '#EBA417' }}
+                      />
+                    ) :
+                      (
+                        <FaStar
+                          className={styles.starCard}
+                          onClick={() => handleFavoriteHero(hero)}
+                        />
+                      )
+                  }
+                  <Link href={`/heroDetails/${hero.id}`}>
                     <a>
                       <Card
-                        title={hero.hero.name}
-                        image={`url(${hero.hero.thumbnail.path}.${hero.hero.thumbnail.extension})`}
+                        title={hero.name}
+                        image={`url(${hero.thumbnail.path}.${hero.thumbnail.extension})`}
                       />
                     </a>
                   </Link>
