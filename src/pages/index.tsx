@@ -7,16 +7,6 @@ import { Search } from '../components/Search';
 import { useHeroes } from '../hooks/useHeroes';
 import styles from './home.module.scss';
 
-interface Hero {
-  id: number;
-  name: string;
-  modified: string,
-  thumbnail: {
-    path: string,
-    extension: string;
-  };
-}
-
 export default function Home() {
 
   const { handleMoreHeroes, heroes } = useHeroes();
