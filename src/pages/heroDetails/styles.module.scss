@@ -24,15 +24,16 @@
 
         background-color: var(--blue-900);
         color           : var(--white-100);
-        font-size       : 5rem;
+        font-size       : 4rem;
 
         transform: translateY(50%)
       }
     }
 
     .heroDetails {
-      // border : 1px solid #000;
-      padding: 2rem;
+      margin-top: 3rem;
+      border    : 1px solid #000;
+      padding   : 1rem 2rem;
     }
   }
 }
