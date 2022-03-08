@@ -1,4 +1,4 @@
-import { GetStaticPaths } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import api from "../../services/api";
 import styles from './styles.module.scss';
@@ -45,7 +45,6 @@ export default function HeroDetails(props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  console.log('cai no getStatic do Heroes');
   const { data } = await api.get('/characters');
 
   const heroes = data.data.results;
@@ -53,15 +52,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = heroes.map(hero => {
     return {
       params: {
-        slug: hero.id
+        slug: `${hero.id}`
       }
     };
   });
 
-  console.log('paths: ', paths);
-
   return {
     paths,
     fallback: 'blocking'
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug } = context.params;
+  const { data } = await api.get(`/characters/${slug}`);
+  const dataResult = data.data.results;
+
+  return {
+    props: {
+      dataResult
+    },
+    revalidate: 1
+    // revalidate: 60 * 60 * 24 // seconds * minutes * hours (update every 24 hours)
   };
 };
