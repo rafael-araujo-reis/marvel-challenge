@@ -2,18 +2,43 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import api from "../../services/api";
 import styles from './styles.module.scss';
+
+type section = {
+  available: number,
+  collectionURI: string,
+  items: [],
+  returned: number;
+};
 interface Hero {
-  id: number;
-  name: string;
+  id: number,
+  name: string,
+  description: string,
   modified: string,
   thumbnail: {
     path: string,
     extension: string;
-  };
+  },
+  resourceURI: string,
+  comics: {
+    section: section;
+  },
+  series: {
+    section: section;
+  },
+  stories: {
+    section: section;
+  },
+  events: {
+    section: section;
+  },
+  urls: [{
+    type: string,
+    url: string;
+  }];
 }
 
-interface HeroProps {
-  hero: Hero;
+interface HeroDetailsProps {
+  dataResult: Hero[];
 }
 
 export default function HeroDetails(props) {
