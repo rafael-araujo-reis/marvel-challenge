@@ -9,6 +9,11 @@ type section = {
   items: [],
   returned: number;
 };
+
+type SectionItemsProps = {
+  name: string,
+  resourceURI: string,
+};
 interface Hero {
   id: number,
   name: string,
@@ -20,16 +25,28 @@ interface Hero {
   },
   resourceURI: string,
   comics: {
-    section: section;
+    available: number,
+    collectionURI: string,
+    items: [],
+    returned: number;
   },
   series: {
-    section: section;
+    available: number,
+    collectionURI: string,
+    items: [],
+    returned: number;
   },
   stories: {
-    section: section;
+    available: number,
+    collectionURI: string,
+    items: [],
+    returned: number;
   },
   events: {
-    section: section;
+    available: number,
+    collectionURI: string,
+    items: [],
+    returned: number;
   },
   urls: [{
     type: string,
@@ -42,7 +59,6 @@ interface HeroDetailsProps {
 }
 
 export default function HeroDetails({ dataResult }: HeroDetailsProps) {
-  console.log('Hero details: ', dataResult[0]);
 
   const dataHero = dataResult[0];
   const sections = ['comics', 'events', 'series', 'stories'];
@@ -51,6 +67,7 @@ export default function HeroDetails({ dataResult }: HeroDetailsProps) {
     <>
       <Head>
         <title>{dataHero.name}</title>
+        <link rel="shortcut icon" href="favicon.png" type="image/png" />
       </Head>
       <main className={styles.heroContainer}>
         <div className={styles.heroContent}>
@@ -62,9 +79,57 @@ export default function HeroDetails({ dataResult }: HeroDetailsProps) {
           <section className={styles.heroDetails}>
             <p>{dataHero.description}</p>
 
-            {
+            <div className={styles.sectionContent}>
+              <h2 className={styles.titleSection}>Séries</h2>
+              <ul>
+                {
+                  dataHero.series.items.map((serie: SectionItemsProps) => {
+                    return (
+                      <li key={serie.name}>{serie.name}</li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
 
-            }
+            <div className={styles.sectionContent}>
+              <h2 className={styles.titleSection}>Histórias</h2>
+              <ul>
+                {
+                  dataHero.stories.items.map((store: SectionItemsProps) => {
+                    return (
+                      <li key={store.name}>{store.name}</li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
+
+            <div className={styles.sectionContent}>
+              <h2 className={styles.titleSection}>Histórias em quadrinhos</h2>
+              <ul>
+                {
+                  dataHero.comics.items.map((comic: SectionItemsProps) => {
+                    return (
+                      <li key={comic.name}>{comic.name}</li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
+
+            <div className={styles.sectionContent}>
+              <h2 className={styles.titleSection}>Eventos</h2>
+              <ul>
+                {
+                  dataHero.events.items.map((event: SectionItemsProps) => {
+                    return (
+                      <li key={event.name}>{event.name}</li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
 
           </section>
         </div>
