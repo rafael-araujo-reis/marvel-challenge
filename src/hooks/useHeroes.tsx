@@ -34,7 +34,6 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
     const storageHeroes = localStorage.getItem('@HeroesMarvel');
 
     if (storageHeroes) {
-      console.log('to caindo aqui');
       return JSON.parse(storageHeroes);
     }
 
