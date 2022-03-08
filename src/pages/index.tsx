@@ -47,13 +47,13 @@ export default function Home() {
       <main className={styles.homeContainer}>
 
         <Search
-          placeholder={'Procure por Avangers, Spider-man, Balder ...'}
-        />
-        <Button
+          placeholder={'Procure por Avangers, Spider-man, Balder, entre outros...'}
+          typeInput={'text'}
           titleButton={'Pesquisar'}
           colorTitle={'#FFFFFF'}
           bgColor={'#700611'}
-          onClick={heroSearch} />
+          onClick={heroSearch}
+        />
 
         <ul className={styles.cardsContainer}>
           {
