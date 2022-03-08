@@ -41,27 +41,31 @@ interface HeroDetailsProps {
   dataResult: Hero[];
 }
 
-export default function HeroDetails(props) {
-  console.log('Hero details: ', props);
+export default function HeroDetails({ dataResult }: HeroDetailsProps) {
+  console.log('Hero details: ', dataResult[0]);
+
+  const dataHero = dataResult[0];
+  const sections = ['comics', 'events', 'series', 'stories'];
+
   return (
     <>
       <Head>
-        <title>Titulo Herói</title>
+        <title>{dataHero.name}</title>
       </Head>
       <main className={styles.heroContainer}>
         <div className={styles.heroContent}>
-          <section className={styles.heroDisplay}>
-            <h1 className={styles.title}>Hero name</h1>
+          <section className={styles.heroDisplay}
+            style={{ backgroundImage: `url(${dataHero.thumbnail.path}.${dataHero.thumbnail.extension})` }}>
+            <h1 className={styles.title}>{dataHero.name}</h1>
           </section>
+
           <section className={styles.heroDetails}>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui ipsam ea incidunt ab vel facilis, accusamus numquam sunt distinctio perferendis quod, repellendus suscipit voluptas. Labore provident rerum est dolor. Corrupti.</p>
-            <ul>
-              <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, natus.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem, ipsum dolor.</li>
-              <li>Lorem, ipsum dolor.</li>
-              <li>Lorem, ipsum dolor.</li>
-            </ul>
+            <p>{dataHero.description}</p>
+
+            {
+
+            }
+
           </section>
         </div>
       </main>
