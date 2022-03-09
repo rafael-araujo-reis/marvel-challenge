@@ -22,6 +22,8 @@ interface Heroes {
 interface HeroesContextData {
   heroes: Heroes[];
   handleMoreHeroes: () => void;
+  updateDataHeroes: () => void;
+  handleSearchHeroes: (props: any) => void;
 }
 
 const HeroesContext = createContext<HeroesContextData>({} as HeroesContextData);
@@ -34,6 +36,7 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
     const storageHeroes = localStorage.getItem('@HeroesMarvel');
 
     if (storageHeroes) {
+      setHeroes(JSON.parse(storageHeroes));
       return JSON.parse(storageHeroes);
     }
 
@@ -65,8 +68,32 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
     }
   }, [heroes]);
 
+  const handleSearchHeroes = async (valueSearch: string) => {
+    try {
+      const nameStartsWith = valueSearch;
+
+      const response = await api.get('/characters', {
+        params: {
+          nameStartsWith
+        }
+      });
+
+      const resultHeroes = response.data.data.results;
+
+      setHeroes(resultHeroes);
+      // localStorage.setItem('@HeroesMarvel', JSON.stringify([...heroes, ...resultHeroes]));
+    } catch (error) {
+      console.log(`error: ${error.message}`);
+    }
+  };
+
+  const updateDataHeroes = useCallback(async () => {
+    setHeroes(heroes);
+    localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
+  }, [heroes]);
+
   return <HeroesContext.Provider
-    value={{ heroes, handleMoreHeroes }}
+    value={{ heroes, handleMoreHeroes, updateDataHeroes, handleSearchHeroes }}
   >
     {children}
   </HeroesContext.Provider>;
