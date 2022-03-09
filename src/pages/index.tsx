@@ -20,19 +20,23 @@ interface Hero {
 
 export default function Home() {
 
-  const { handleMoreHeroes, heroes, handleSearchHeroes } = useHeroes();
+  const { handleMoreHeroes, heroes, handleSearchHeroes, handleFavoriteHero } = useHeroes();
   let valueSearch = '';
 
-  function handleFavoriteHero(hero: Hero) {
+  // function handleFavoriteHero2(hero: Hero) {
 
-    heroes.find(element => {
-      if (element.id === hero.id) {
-        'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
-      }
-    });
+  //   heroes.find(element => {
+  //     if (element.id === hero.id) {
+  //       'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
+  //     }
+  //   });
 
-    localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
-  }
+  //   updateLocalStorage(heroes);
+  // }
+
+  // function updateLocalStorage(heroes) {
+  //   localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
+  // }
 
   function handleSearchHero(event) {
     valueSearch = event.target.value;

@@ -14,7 +14,7 @@ type SectionItemsProps = {
   name: string,
   resourceURI: string,
 };
-interface Hero {
+interface HeroData {
   id: number,
   name: string,
   description: string,
@@ -55,7 +55,7 @@ interface Hero {
 }
 
 interface HeroDetailsProps {
-  dataResult: Hero[];
+  dataResult: HeroData[];
 }
 
 export default function HeroDetails({ dataResult }: HeroDetailsProps) {
