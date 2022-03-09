@@ -67,7 +67,6 @@ export default function HeroDetails({ dataResult }: HeroDetailsProps) {
     <>
       <Head>
         <title>{dataHero.name}</title>
-        <link rel="shortcut icon" href="favicon.png" type="image/png" />
       </Head>
       <main className={styles.heroContainer}>
         <div className={styles.heroContent}>

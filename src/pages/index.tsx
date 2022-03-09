@@ -20,7 +20,7 @@ interface Hero {
 
 export default function Home() {
 
-  const { handleMoreHeroes, heroes, updateDataHeroes, handleSearchHeroes } = useHeroes();
+  const { handleMoreHeroes, heroes, handleSearchHeroes } = useHeroes();
   let valueSearch = '';
 
   function handleFavoriteHero(hero: Hero) {
@@ -61,43 +61,51 @@ export default function Home() {
             onClick={() => handleSearchHeroes(valueSearch)}
             type={'button'} />
         </form>
+        <span id="errorSearch"></span>
 
         <section id='sectionHeroes'>
-          <ul className={styles.cardsContainer}>
-            {
-              heroes.map((hero) => {
-                return (
-                  <li key={hero.id}>
+          {
+            heroes.length !== 0 ?
+              (
+                <ul className={styles.cardsContainer}>
+                  {
+                    heroes.map((hero) => {
+                      return (
+                        <li key={hero.id}>
 
-                    {
-                      hero.favorite === true ? (
-                        <FaStar
-                          className={styles.starCard}
-                          onClick={() => handleFavoriteHero(hero)}
-                          style={{ color: '#EBA417' }}
-                        />
-                      ) :
-                        (
-                          <FaStar
-                            className={styles.starCard}
-                            onClick={() => handleFavoriteHero(hero)}
-                          />
-                        )
-                    }
-                    <Link href={`/heroDetails/${hero.id}`}>
-                      <a>
-                        <Card
-                          title={hero.name}
-                          image={`url(${hero.thumbnail.path}.${hero.thumbnail.extension})`}
-                        />
-                      </a>
-                    </Link>
-                  </li>
-                );
-              })
-            }
+                          {
+                            hero.favorite === true ? (
+                              <FaStar
+                                className={styles.starCard}
+                                onClick={() => handleFavoriteHero(hero)}
+                                style={{ color: '#EBA417' }}
+                              />
+                            ) :
+                              (
+                                <FaStar
+                                  className={styles.starCard}
+                                  onClick={() => handleFavoriteHero(hero)}
+                                />
+                              )
+                          }
+                          <Link href={`/heroDetails/${hero.id}`}>
+                            <a>
+                              <Card
+                                title={hero.name}
+                                image={`url(${hero.thumbnail.path}.${hero.thumbnail.extension})`}
+                              />
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    })
+                  }
+                </ul>
+              ) :
+              (
+                <h3>Nenhuma informação foi encontrada para busca realizada</h3>
+              )}
 
-          </ul>
           <Button
             titleButton={'Buscar outros heróis'}
             colorTitle={'#FFFFFF'}
