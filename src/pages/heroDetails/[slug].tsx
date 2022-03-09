@@ -166,7 +166,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       dataResult
     },
-    revalidate: 1
-    // revalidate: 60 * 60 * 24 // seconds * minutes * hours (update every 24 hours)
+    revalidate: 60 * 60 * 24 // seconds * minutes * hours (update every 24 hours)
   };
 };
