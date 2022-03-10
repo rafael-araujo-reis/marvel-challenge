@@ -3,13 +3,6 @@ import Head from "next/head";
 import api from "../../services/api";
 import styles from './styles.module.scss';
 
-type section = {
-  available: number,
-  collectionURI: string,
-  items: [],
-  returned: number;
-};
-
 type SectionItemsProps = {
   name: string,
   resourceURI: string,

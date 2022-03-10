@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { FaStar } from 'react-icons/fa';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import Header from '../components/Header';
 import { useHeroes } from '../hooks/useHeroes';
 import styles from './home.module.scss';
 
-import { FaStar } from 'react-icons/fa';
 
 interface Hero {
   id: string,
@@ -22,21 +22,6 @@ export default function Home() {
 
   const { handleMoreHeroes, heroes, handleSearchHeroes, handleFavoriteHero } = useHeroes();
   let valueSearch = '';
-
-  // function handleFavoriteHero2(hero: Hero) {
-
-  //   heroes.find(element => {
-  //     if (element.id === hero.id) {
-  //       'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
-  //     }
-  //   });
-
-  //   updateLocalStorage(heroes);
-  // }
-
-  // function updateLocalStorage(heroes) {
-  //   localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
-  // }
 
   function handleSearchHero(event) {
     valueSearch = event.target.value;
@@ -59,8 +44,8 @@ export default function Home() {
             onBlur={handleSearchHero}
           />
           <Button
-            titleButton={'Pesquisar'}
-            colorTitle={'#FFFFFF'}
+            textButton={'Pesquisar'}
+            colorText={'#FFFFFF'}
             bgColor={'#700611'}
             onClick={() => handleSearchHeroes(valueSearch)}
             type={'button'} />
@@ -111,8 +96,8 @@ export default function Home() {
               )}
 
           <Button
-            titleButton={'Buscar outros heróis'}
-            colorTitle={'#FFFFFF'}
+            textButton={'Buscar outros heróis'}
+            colorText={'#FFFFFF'}
             bgColor={'#700611'}
 
             onClick={handleMoreHeroes}
