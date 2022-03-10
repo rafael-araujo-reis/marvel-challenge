@@ -3,13 +3,11 @@ import Header from '../../src/components/Header';
 
 
 describe('Header component test', () => {
-  it('should render the heading', () => {
+  test('should render the heading', () => {
     render(<Header />);
 
-    const heading = screen.getByText(
-      'Test Header component'
-    );
+    const header = screen.getByTestId('pure_header');
 
-    expect(heading).toBeInTheDocument();
+    expect(header).toBeInTheDocument();
   });
 });
