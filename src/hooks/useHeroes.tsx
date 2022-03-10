@@ -9,6 +9,7 @@ interface Hero {
   id: number;
   name: string;
   modified: string,
+  favorite?: boolean,
   thumbnail: {
     path: string,
     extension: string;
@@ -24,6 +25,7 @@ interface HeroesContextData {
   handleMoreHeroes: () => void;
   updateDataHeroes: () => void;
   handleSearchHeroes: (props: any) => void;
+  handleFavoriteHero: (props: any) => void;
 }
 
 const HeroesContext = createContext<HeroesContextData>({} as HeroesContextData);
@@ -36,6 +38,7 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
     const storageHeroes = localStorage.getItem('@HeroesMarvel');
 
     if (storageHeroes) {
+      console.log('tem storage, cai aqui dentro');
       setHeroes(JSON.parse(storageHeroes));
       return JSON.parse(storageHeroes);
     }
@@ -44,7 +47,7 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
       .then((res) => {
         const resultHeroes = res.data.data.results;
         setHeroes(resultHeroes);
-        localStorage.setItem('@HeroesMarvel', JSON.stringify(resultHeroes));
+        updateLocalStorage(heroes);
       })
       .catch(err => console.log(err.message));
   }, []);
@@ -62,7 +65,8 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
       const resultHeroes = response.data.data.results;
 
       setHeroes([...heroes, ...resultHeroes]);
-      localStorage.setItem('@HeroesMarvel', JSON.stringify([...heroes, ...resultHeroes]));
+      updateLocalStorage([...heroes, ...resultHeroes]);
+      // localStorage.setItem('@HeroesMarvel', JSON.stringify([...heroes, ...resultHeroes]));
     } catch (error) {
       console.log(`error: ${error.message}`);
     }
@@ -71,29 +75,65 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
   const handleSearchHeroes = async (valueSearch: string) => {
     try {
       const nameStartsWith = valueSearch;
+      if (nameStartsWith) {
 
-      const response = await api.get('/characters', {
-        params: {
-          nameStartsWith
-        }
-      });
+        const response = await api.get('/characters', {
+          params: {
+            nameStartsWith
+          }
+        });
 
-      const resultHeroes = response.data.data.results;
+        const resultHeroes = response.data.data.results;
 
-      setHeroes(resultHeroes);
-      // localStorage.setItem('@HeroesMarvel', JSON.stringify([...heroes, ...resultHeroes]));
+        setHeroes(resultHeroes);
+      }
     } catch (error) {
       console.log(`error: ${error.message}`);
     }
   };
 
+  // const handleFavoriteHero = (hero: Hero) => {
+
+  //   console.log('cai aqui dentro do favorite');
+
+  //   heroes.find(element => {
+  //     if (element.id === hero.id) {
+  //       'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
+  //     }
+  //   });
+
+  //   updateLocalStorage(heroes);
+  // };
+
+  const handleFavoriteHero = useCallback(async (hero: Hero) => {
+    try {
+      console.log('cai aqui dentro do favorite');
+
+      heroes.find(element => {
+        if (element.id === hero.id) {
+          console.log('id igual element');
+          'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
+        }
+      });
+
+      setHeroes(heroes);
+      updateLocalStorage(heroes);
+    } catch (error) {
+      console.log(`error: ${error.message}`);
+    }
+  }, [heroes]);
+
+  function updateLocalStorage(heroes) {
+    localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
+  }
+
   const updateDataHeroes = useCallback(async () => {
     setHeroes(heroes);
-    localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
+    updateLocalStorage(heroes);
   }, [heroes]);
 
   return <HeroesContext.Provider
-    value={{ heroes, handleMoreHeroes, updateDataHeroes, handleSearchHeroes }}
+    value={{ heroes, handleMoreHeroes, updateDataHeroes, handleSearchHeroes, handleFavoriteHero }}
   >
     {children}
   </HeroesContext.Provider>;

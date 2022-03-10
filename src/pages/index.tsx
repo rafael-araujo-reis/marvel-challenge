@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
-import { Header } from '../components/Header';
+import Header from '../components/Header';
 import { useHeroes } from '../hooks/useHeroes';
 import styles from './home.module.scss';
 
@@ -46,7 +46,7 @@ export default function Home() {
     <>
       <Header />
       <Head>
-        <title>Marvel Challenge | Magalu</title>
+        <title>Marvel Challenge</title>
       </Head>
       <main className={styles.homeContainer}>
 
