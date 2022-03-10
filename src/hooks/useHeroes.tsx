@@ -66,7 +66,7 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
 
       setHeroes([...heroes, ...resultHeroes]);
       updateLocalStorage([...heroes, ...resultHeroes]);
-      // localStorage.setItem('@HeroesMarvel', JSON.stringify([...heroes, ...resultHeroes]));
+
     } catch (error) {
       console.log(`error: ${error.message}`);
     }
@@ -91,19 +91,6 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
       console.log(`error: ${error.message}`);
     }
   };
-
-  // const handleFavoriteHero = (hero: Hero) => {
-
-  //   console.log('cai aqui dentro do favorite');
-
-  //   heroes.find(element => {
-  //     if (element.id === hero.id) {
-  //       'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
-  //     }
-  //   });
-
-  //   updateLocalStorage(heroes);
-  // };
 
   const handleFavoriteHero = useCallback(async (hero: Hero) => {
     try {
