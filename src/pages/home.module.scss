@@ -55,6 +55,12 @@
   }
 }
 
+.sectionHeroes {
+  button {
+    display: block;
+  }
+}
+
 @media (max-width: 560px) {
   .homeContainer {
     .searchContainer {
@@ -64,6 +70,12 @@
         width : 100%;
         margin: 1rem 0;
       }
+    }
+  }
+
+  .sectionHeroes {
+    button {
+      width: 100%;
     }
   }
 }

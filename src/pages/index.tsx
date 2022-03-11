@@ -52,7 +52,7 @@ export default function Home() {
         </form>
         <span id="errorSearch"></span>
 
-        <section id='sectionHeroes'>
+        <section id='sectionHeroes' className={styles.sectionHeroes}>
           {
             heroes.length !== 0 ?
               (
