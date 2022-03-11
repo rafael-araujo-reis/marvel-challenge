@@ -3,7 +3,6 @@ Projeto desenvolvido para o processo seletivo da empresa **Luizalabs**.
 
 **Objetivo:** Consumir os heróis da [API da Marvel](https://developer.marvel.com/docs), construção do layout responsivo e disponibilização dos dados retornados.
 
-
 Este projeto foi desenvolvido como desafia do processo seletivo da empresa **Luizalabs** e tem como objetivo buscar na API da Marvel a listagem de heróis.
 
 _**Developer:** Rafael Araujo Reis_
