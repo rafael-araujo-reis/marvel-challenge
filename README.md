@@ -6,7 +6,6 @@ _**Developer:** Rafael Araujo Reis_
 
 ---
 ## Inicializando o projeto
----
 
 Primeiro baixe as dependências do projeto
 ``` bash
@@ -28,7 +27,7 @@ Abra o navegador e acesse [http://localhost:3000](http://localhost:3000) para vi
 ---
 
 ## Editando no projeto
----
+
 ## Components
 A documentação dos componentes estão acessíveis abaixo:
 
