@@ -1,9 +1,9 @@
 # Marvel Challenge | Luizalabs
-Projeto desenvolvido para o processo seletivo da empresa **Luizalabs**.
+Aplicação desenvolvida para o processo seletivo da empresa **Luizalabs**.
 
-**Objetivo:** Consumir os heróis da [API da Marvel](https://developer.marvel.com/docs), construção do layout responsivo e disponibilização dos dados retornados.
+**Objetivo:** Consumir os GET a lista de heróis da [API da Marvel](https://developer.marvel.com/docs)
 
-Este projeto foi desenvolvido como desafia do processo seletivo da empresa **Luizalabs** e tem como objetivo buscar na API da Marvel a listagem de heróis.
+Construção do layout responsivo e disponibilização dos dados retornados.
 
 _**Developer:** Rafael Araujo Reis_
 
