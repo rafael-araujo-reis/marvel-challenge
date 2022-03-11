@@ -16,22 +16,35 @@
   box-sizing: border-box;
 }
 
+/********************
+ * Reduzindo o tamanho da fonte padrão para desktop de 16px para 10px
+ *******************/
 html {
   font-size: 62.5%;
 }
 
+/********************
+ * Reduzindo o tamanho da fonte padrão para tablet de 16px para  9px
+ *******************/
 @media (max-width: 1080px) {
   html {
     font-size: 56.25%;
   }
 }
 
+/********************
+ * Reduzindo o tamanho da fonte padrão para mobile de 16px para  8px
+ *******************/
 @media (max-width: 720px) {
   html {
     font-size: 50%;
   }
 }
 
+/********************
+ * Como a fonte padrão está em 10px, quando definimos em 1.6rem a fonte para desktop passa a ser 16px
+ * facilitando assim a definição dos tamanhos de fonte, espaçamentos, trazendo maior flexibilidade a tela
+ *******************/
 body,
 input,
 textarea,
