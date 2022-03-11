@@ -5,7 +5,7 @@ interface HeroesProviderProps {
   children: ReactNode;
 }
 
-interface Hero {
+interface Heroes {
   id: number;
   name: string;
   modified: string,
@@ -14,10 +14,6 @@ interface Hero {
     path: string,
     extension: string;
   };
-}
-
-interface Heroes {
-  hero: Hero;
 }
 
 interface HeroesContextData {
@@ -37,8 +33,7 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
   useEffect(() => {
     const storageHeroes = localStorage.getItem('@HeroesMarvel');
 
-    if (storageHeroes) {
-      console.log('tem storage, cai aqui dentro');
+    if (storageHeroes && storageHeroes.length !== 2) {
       setHeroes(JSON.parse(storageHeroes));
       return JSON.parse(storageHeroes);
     }
@@ -47,9 +42,9 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
       .then((res) => {
         const resultHeroes = res.data.data.results;
         setHeroes(resultHeroes);
-        updateLocalStorage(heroes);
+        updateLocalStorage(resultHeroes);
       })
-      .catch(err => console.log(err.message));
+      .catch(err => console.log(`error: ${err.message}`));
   }, []);
 
   const handleMoreHeroes = useCallback(async () => {
@@ -92,13 +87,11 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
     }
   };
 
-  const handleFavoriteHero = useCallback(async (hero: Hero) => {
+  const handleFavoriteHero = useCallback(async (hero: Heroes) => {
     try {
-      console.log('cai aqui dentro do favorite');
 
       heroes.find(element => {
         if (element.id === hero.id) {
-          console.log('id igual element');
           'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
         }
       });
