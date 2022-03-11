@@ -1,13 +1,17 @@
 # Marvel Challenge | Luizalabs
+Projeto desenvolvido para o processo seletivo da empresa **Luizalabs**.
 
-Este projeto foi desenvolvido como desafia do processo seletivo da empresa **Luizalabs** e tem como objetivo buscar na API da Marvel a listagem de heróis
+**Objetivo:** Consumir os heróis da [API da Marvel](https://developer.marvel.com/docs), construção do layout responsivo e disponibilização dos dados retornados.
+
+
+Este projeto foi desenvolvido como desafia do processo seletivo da empresa **Luizalabs** e tem como objetivo buscar na API da Marvel a listagem de heróis.
 
 _**Developer:** Rafael Araujo Reis_
 
 ---
 ## Inicializando o projeto
 
-Primeiro baixe as dependências do projeto
+Primeiro baixe as dependências do projeto:
 ``` bash
 npm install
 #ou
@@ -22,7 +26,7 @@ npm run dev
 yarn dev
 ```
 
-Abra o navegador e acesse [http://localhost:3000](http://localhost:3000) para visualizar o projeto local
+Abra o navegador e acesse [http://localhost:3000](http://localhost:3000) para visualizar o projeto local.
 
 ---
 
