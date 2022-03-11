@@ -1,6 +1,6 @@
 import { act } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
-import { mockHeroData } from '__mocks__/fileMock';
+import { mockHeroData } from '../../__mocks__/fileMock';
 import api from '../../src/services/api';
 
 const apiMock = new MockAdapter(api);
