@@ -5,10 +5,14 @@ const createJestConfig = nextJest({
 });
 
 const customJestConfig = {
+  testPathIgnorePatterns: ["/node_modules", "./next"],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '@components/(.*)$': '<rootDir>/components/$1',
     '@pages/(.*)$': '<rootDir>/pages/$1'
+  },
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
   },
   testEnvironment: 'jest-environment-jsdom'
 };
