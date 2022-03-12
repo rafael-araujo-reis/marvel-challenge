@@ -13,9 +13,13 @@ _**Developer:** Rafael Araujo Reis_
 Primeiro baixe as dependências do projeto:
 ``` bash
 npm install
-#ou
-yarn
 ```
+
+Acesse conta da [Marvel](https://developer.marvel.com/account) e pegue as chaves ***public key*** e a ***private key***.
+
+Crie na raiz do projeto o arquivo ```.env.local``` e informme as chaves ***public key*** e a ***private key*** da conta [Marvel](https://developer.marvel.com/account)
+  * NEXT_PUBLIC_MARVEL_PUBLIC_KEY=_informe sua public key_
+  * NEXT_PUBLIC_MARVEL_PRIVATE_KEY=_informe sua private key_
 
 Depois execute o projeto
 
@@ -52,12 +56,9 @@ As páginas do projeto se encontram dentro da pasta [pages](./src/pages/)
 ## Serviços
 O consumo da [API da Marvel](https://developer.marvel.com/docs) ocorre dentro do arquivo [api.ts](./src/services/api.ts)
 
-* Para que a comunicação funcione será necessário criar uma conta na [Marvel](https://developer.marvel.com/account) e pegar a ***public key*** e a ***private key***
-* Crie na raiz do projeto o arquivo ```.env.local``` 
-  * NEXT_PUBLIC_MARVEL_PUBLIC_KEY=_informe sua public key_
-  * NEXT_PUBLIC_MARVEL_PRIVATE_KEY=_informe sua private key_
+* Para que a comunicação funcione é necessário as chaves ***public key*** e a ***private key*** da conta [Marvel](https://developer.marvel.com/account).
 
-_(após a execução este passo será necessário parar parar a execução do projeto e inicializar novamente)_
+_(sempre após a alteração do arquivo .env.local, é necessário parar a execução do projeto e inicializar novamente)_
 
 ## Estilização
 A estilização global do projeto se encontra no arquivo [global.scss](./src//styles/global.scss)
