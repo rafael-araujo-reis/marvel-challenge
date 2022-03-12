@@ -92,14 +92,28 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
   const handleFavoriteHero = useCallback(async (hero: Heroes) => {
     try {
 
-      heroes.find(element => {
-        if (element.id === hero.id) {
-          'favorite' in hero ? hero.favorite = !hero.favorite : hero.favorite = true;
-        }
-      });
+      const heroesUpdate = heroes.map(heroUpdate =>
+        heroUpdate.id === hero.id ? {
+          ...heroUpdate, favorite: !heroUpdate.favorite
+        } : heroUpdate
+      );
 
-      setHeroes(heroes);
-      updateLocalStorage(heroes);
+      setHeroes(heroesUpdate);
+
+      const localHeroes = getLocalStorage();
+
+      if (heroesUpdate.length === localHeroes.length) {
+        updateLocalStorage(heroesUpdate);
+      } else {
+        const localHeroesUpdate = localHeroes.map(heroUpdate =>
+          heroUpdate.id === hero.id ? {
+            ...heroUpdate, favorite: !heroUpdate.favorite
+          } : heroUpdate
+        );
+
+        updateLocalStorage(localHeroesUpdate);
+      }
+
     } catch (error) {
       console.log(`error: ${error.message}`);
     }
@@ -107,6 +121,11 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
 
   function updateLocalStorage(heroes) {
     localStorage.setItem('@HeroesMarvel', JSON.stringify(heroes));
+  }
+
+  function getLocalStorage(): Heroes[] {
+    const storageHeroes = localStorage.getItem('@HeroesMarvel');
+    return JSON.parse(storageHeroes);
   }
 
   const updateDataHeroes = useCallback(async () => {
