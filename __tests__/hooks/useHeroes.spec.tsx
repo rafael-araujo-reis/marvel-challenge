@@ -1,8 +1,8 @@
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import { mockHeroData } from '../../__mocks__/fileMock';
-import { HeroesProvider, useHeroes } from '../../src/hooks/useHeroes';
 import { act } from 'react-dom/test-utils';
+import { HeroesProvider, useHeroes } from '../../src/hooks/useHeroes';
+import { mockHeroData } from '../../__mocks__/fileMock';
 
 describe('Heroes hook tests', () => {
 

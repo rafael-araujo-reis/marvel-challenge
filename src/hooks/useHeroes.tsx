@@ -44,7 +44,9 @@ export function HeroesProvider({ children }: HeroesProviderProps): JSX.Element {
         setHeroes(resultHeroes);
         updateLocalStorage(resultHeroes);
       })
-      .catch(err => console.log(`error: ${err.message}`));
+      .catch(err =>
+        console.log(`error: ${err.message}`)
+      );
   }, []);
 
   const handleMoreHeroes = useCallback(async () => {
