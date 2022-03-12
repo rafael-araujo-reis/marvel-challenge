@@ -149,8 +149,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { slug } = context.params;
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params;
   const { data } = await api.get(`/characters/${slug}`);
   const dataResult = data.data.results;
 

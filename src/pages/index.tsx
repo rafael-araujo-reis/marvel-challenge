@@ -7,17 +7,6 @@ import Header from '../components/Header';
 import { useHeroes } from '../hooks/useHeroes';
 import styles from './home.module.scss';
 
-
-interface Hero {
-  id: string,
-  name: string,
-  thumbnail: {
-    path: string,
-    extension: string,
-  },
-  favorite?: boolean,
-}
-
 export default function Home() {
 
   const { handleMoreHeroes, heroes, handleSearchHeroes, handleFavoriteHero } = useHeroes();
